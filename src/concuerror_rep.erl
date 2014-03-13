@@ -311,7 +311,7 @@ find_my_links() ->
     find_my_links_or_monitors(links).
 
 find_my_monitored() ->
-    find_my_links_or_monitors(monitored_by).    
+    find_my_links_or_monitors(monitored_by).
 
 find_my_links_or_monitors(Type) ->
     PPid = self(),
@@ -423,7 +423,7 @@ rep_after_notify() ->
 %%
 %% Called first thing after a message has been received, to inform the scheduler
 %% about the message received and the sender.
--spec rep_receive_notify(pid(), dict(), term()) -> 'ok'.
+-spec rep_receive_notify(pid(), dict:dict(), term()) -> 'ok'.
 rep_receive_notify(From, CV, Msg) ->
     check_unknown_process(),
     concuerror_sched:notify('receive', {From, CV, Msg}, prev),
@@ -536,7 +536,7 @@ spawn_fun_wrapper(Fun) ->
             exit(Normal);
         Class:Type ->
             concuerror_sched:notify(error,[Class,Type,erlang:get_stacktrace()])
-    end.                    
+    end.
 
 find_my_info() ->
     MyEts = find_my_ets_tables(),
